@@ -1,1 +1,1 @@
-# Tic-tac-toe game using python and Tkinter library
+# Tic-tac-toe game using python and tkinter library
