@@ -21,3 +21,25 @@ class GUI:
         self.restart_button = tk.Button(master, text="Restart", font=('Arial', 14),
                                         command=self.restart_game)
         self.restart_button.grid(row=3, column=0, columnspan=3, sticky="nsew")
+        
+        
+    def on_click(self, row, col):
+        index = 3 * row + col
+        if self.game.make_move(index):
+                
+            self.buttons[index].config(text=self.game.current_player)
+            if self.game.check_winner():
+                messagebox.showinfo("Tic Tac Toe", f"{self.game.current_player} wins!")
+                self.restart_game()
+            
+            elif " " not in self.game.board:
+                messagebox.showinfo("Tic Tac Toe", "Its a tie!")
+                self.restart_game()
+            else:
+                self.game.switch_player()
+                        
+    def restart_game(self):
+        self.game = Game()
+        for button in self.buttons:
+            button.config(text= " ")
+        
